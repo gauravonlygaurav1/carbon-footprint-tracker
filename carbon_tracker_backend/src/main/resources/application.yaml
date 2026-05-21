@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: carbon-tracker-backend
+
+  profiles:
+    active: dev
+
+server:
+  port: 8082

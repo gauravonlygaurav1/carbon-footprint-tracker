@@ -1,0 +1,13 @@
+package carbon.tracker.backend;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class CarbonTrackerBackendApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
