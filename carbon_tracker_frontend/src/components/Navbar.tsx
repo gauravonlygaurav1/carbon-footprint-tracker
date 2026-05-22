@@ -1,8 +1,8 @@
-import  { useState } from 'react'
-import { Button } from './ui/button'
+import { useState } from "react"
+import { Button } from "./ui/button"
 import navlogo from "@/assets/navlogo.png"
-import { NavLink, useNavigate } from 'react-router'
-import useAuth from '@/Auth/store'
+import { NavLink, useNavigate } from "react-router"
+import useAuth from "@/Auth/store"
 
 function Navbar() {
   const checkLogin = useAuth((state) => state.checkLogin)
@@ -11,89 +11,69 @@ function Navbar() {
   const navigate = useNavigate()
 
   const [profileOpen, setProfileOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  const linkClass = ({ isActive }: any) =>
+    `px-4 py-2 rounded-xl transition-all duration-300 ${
+      isActive
+        ? "bg-gradient-to-r from-green-100 to-green-200 text-green-800 shadow-sm"
+        : "text-green-800 hover:bg-green-100/70 hover:text-green-950"
+    }`
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 h-16 backdrop-blur-md bg-green-50 border-b border-green-200 shadow-sm">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-green-50 border-b border-green-200 shadow-sm">
+      <div className="flex items-center justify-between px-4 md:px-6 h-16">
 
-      {/* LOGGED IN*/}
-      {checkLogin() ? (
-        <div className="flex items-center justify-between w-full">
+        {/* LOGO */}
+        <div className="flex items-center gap-8">
+        <img src={navlogo} alt="Logo" className="h-14 md:h-16 w-auto" />
 
-          {/* LEFT */}
-          <div className="flex items-center gap-6">
-            <img src={navlogo} alt="Logo" className="h-16 w-auto" />
-
-            <div className="flex gap-6 text-base font-semibold">
-              <NavLink
-                to="/dashboard"
-                end
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-xl transition-all duration-300
-   ${isActive
-                    ? "bg-gradient-to-r from-green-100 to-green-200 text-green-800 shadow-sm"
-                    : "text-green-800 hover:bg-green-100/70 hover:text-green-950"
-                  }`
-                }
-              >
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex items-center gap-6 font-semibold">
+          {checkLogin() ? (
+            <>
+              <NavLink to="/dashboard" end className={linkClass}>
                 Dashboard
               </NavLink>
-              <NavLink
-                to="/dashboard/emissionCalculator"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-xl transition-all duration-300
-   ${isActive
-                    ? "bg-gradient-to-r from-green-100 to-green-200 text-green-800 shadow-sm"
-                    : "text-green-800 hover:bg-green-100/70 hover:text-green-950"
-                  }`
-                }
-              >
+              <NavLink to="/dashboard/emissionCalculator" className={linkClass}>
                 CO₂ Emission
               </NavLink>
-
-              <NavLink
-                to="/dashboard/analytics"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-xl transition-all duration-300
-   ${isActive
-                    ? "bg-gradient-to-r from-green-100 to-green-200 text-green-800 shadow-sm"
-                    : "text-green-800 hover:bg-green-100/70 hover:text-green-950"
-                  }`
-                }
-              >
+              <NavLink to="/dashboard/analytics" className={linkClass}>
                 Analytics
               </NavLink>
-
-              <NavLink
-                to="/dashboard/goals"
-                className={({ isActive }) =>
-                  `px-4 py-2 rounded-xl transition-all duration-300
-   ${isActive
-                    ? "bg-gradient-to-r from-green-100 to-green-200 text-green-800 shadow-sm"
-                    : "text-green-800 hover:bg-green-100/70 hover:text-green-950"
-                  }`
-                }
-              >
+              <NavLink to="/dashboard/goals" className={linkClass}>
                 Goals
               </NavLink>
-            </div>
-          </div>
+            </>
+          ) : (
+            <>
+              <NavLink to="/" className={linkClass}>
+                Home
+              </NavLink>
+              <NavLink to="/about" className={linkClass}>
+                About
+              </NavLink>
+              <NavLink to="/service" className={linkClass}>
+                Service
+              </NavLink>
+            </>
+          )}
+        </div>
+        </div>
 
-          {/* RIGHT */}
-          <div className="flex items-center gap-4 relative">
-
-            {/* Avatar Button */}
-            <button
-              onClick={() => setProfileOpen(p => !p)}
-              className="cursor-pointer flex items-center gap-2 bg-white/80 px-3 py-1.5 rounded-full shadow-sm border border-transparent hover:border-emerald-300"
-            >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-sky-500 flex items-center justify-center text-white font-bold">
-                {user?.name?.charAt(0) || "U"}
-              </div>
-
-              <span className="hidden sm:block text-sm">
-                {user?.name || "Account"}
-              </span>
-            </button>
+        {/* RIGHT SECTION (DESKTOP) */}
+        <div className="hidden md:flex items-center gap-4 relative">
+          {checkLogin() ? (
+            <>
+              <button
+                onClick={() => setProfileOpen((p) => !p)}
+                className="cursor-pointer flex items-center gap-2 bg-white px-3 py-1.5 rounded-full shadow-sm"
+              >
+                <div className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold">
+                  {user?.name?.charAt(0) || "U"}
+                </div>
+                <span className="text-sm">{user?.name}</span>
+              </button>
 
             {/* Dropdown */}
             {profileOpen && (
@@ -101,10 +81,10 @@ function Navbar() {
 
                 {/* Header */}
                 <div className=" px-4 py-3 bg-gray-50 border-b">
-                  <div className="font-semibold text-gray-800">
+                  <div className=" font-semibold text-gray-800">
                     Your account
                   </div>
-                  <div className="text-sm text-gray-500 truncate">
+                  <div className=" text-sm text-gray-500 truncate">
                     {user?.email || "No email set"}
                   </div>
                 </div>
@@ -146,66 +126,107 @@ function Navbar() {
                 </div>
               </div>
             )}
-
-          </div>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login">
+                <Button className="cursor-pointer bg-green-400 hover:bg-green-700 text-sm">
+                  Login
+                </Button>
+              </NavLink>
+              <NavLink to="/contact">
+                <Button variant="outline" className="cursor-pointer hover:bg-amber-50 hover:border hover:border-amber-400 text-sm">
+                  Contact Us
+                </Button>
+              </NavLink>
+            </>
+          )}
         </div>
-      ) : (
 
-        /* LOGGED OUT */
-        <div className="flex items-center justify-between w-full">
+        {/* HAMBURGER (MOBILE ONLY) */}
+        <button
+          className="md:hidden text-2xl"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          ☰
+        </button>
+      </div>
 
-          {/* LEFT */}
-          <div className="flex items-center gap-6">
-            <img src={navlogo} alt="Logo" className="h-16 w-auto" />
-
-            <div className="flex gap-6 text-base font-semibold">
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive ? "text-green-700" : "text-gray-700 hover:text-green-600"
-                }
+          
+      {/* MOBILE MENU */}
+      {mobileOpen && (
+        <div className="md:hidden px-4 pb-4 flex flex-col gap-3 font-semibold bg-green-50 border-t border-green-200">
+          {checkLogin() ? (
+            <>
+              <NavLink to="/dashboard" onClick={() => setMobileOpen(false)}
+                className="text-gray-700 text-left"
               >
+                Dashboard
+              </NavLink>
+              <NavLink
+                to="/dashboard/emissionCalculator"
+                onClick={() => setMobileOpen(false)}
+                className="text-gray-700 text-left"
+              >
+                CO₂ Emission
+              </NavLink>
+              <NavLink
+                to="/dashboard/analytics"
+                onClick={() => setMobileOpen(false)}
+                className="text-gray-700 text-left"
+              >
+                Analytics
+              </NavLink>
+              <NavLink to="/dashboard/goals" onClick={() => setMobileOpen(false)}
+                className="text-gray-700 text-left"
+              >
+                Goals
+              </NavLink>
+              <NavLink to="/dashboard/profile"
+               onClick={() => setMobileOpen(false)}
+               className="text-gray-700 text-left"
+               >
+                Profiles
+              </NavLink>
+
+              <button
+                onClick={() => {
+                  logout()
+                  navigate("/")
+                }}
+                className="text-red-500 text-left"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/" onClick={() => setMobileOpen(false)}
+                className="text-gray-700 text-left">
                 Home
               </NavLink>
-
-              <NavLink
-                to="/about"
-                className={({ isActive }) =>
-                  isActive ? "text-green-700" : "text-gray-700 hover:text-green-600"
-                }
-              >
+              <NavLink to="/about" onClick={() => setMobileOpen(false)}
+                className="text-gray-700 text-left">
                 About
               </NavLink>
-
-              <NavLink
-                to="/service"
-                className={({ isActive }) =>
-                  isActive ? "text-green-700" : "text-gray-700 hover:text-green-600"
-                }
-              >
+              <NavLink to="/service" onClick={() => setMobileOpen(false)}
+                className="text-gray-700 text-left">
                 Service
               </NavLink>
-            </div>
-          </div>
-
-          {/* RIGHT */}
-          <div className="flex gap-4 items-center">
-            <NavLink to="/login">
-              <Button className="cursor-pointer bg-green-400 hover:bg-green-700 text-sm">
+              <NavLink to="/login" onClick={() => setMobileOpen(false)}
+                className="text-green-600 text-left"
+              >
                 Login
-              </Button>
-            </NavLink>
-
-            <NavLink to="/contact">
-              <Button variant="outline" className="cursor-pointer hover:bg-amber-50 hover:border hover:border-amber-400 text-sm">
+              </NavLink>
+              <NavLink to="/contact" onClick={() => setMobileOpen(false)}
+                className="text-amber-600  text-left"
+              >
                 Contact Us
-              </Button>
-            </NavLink>
-          </div>
-
+              </NavLink>
+            </>
+          )}
         </div>
       )}
-
     </nav>
   )
 }
