@@ -1,20 +1,29 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "@/Auth/store";
 
-export default function AuthBootstrap({ children }: { children: React.ReactNode }) {
+export default function AuthBootstrap({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     useAuth.persist.rehydrate();
 
-    const unsub = useAuth.persist.onFinishHydration(() => {
-      setReady(true);
-    });
+    const interval = setInterval(() => {
+      if (useAuth.persist.hasHydrated()) {
+        setReady(true);
+        clearInterval(interval);
+      }
+    }, 50);
 
-    return unsub;
+    return () => clearInterval(interval);
   }, []);
 
-  if (!ready) return " Loading... ";
+  if (!ready) {
+    return React.createElement("div", null, "Loading...");
+  }
 
-  return children;
+  return React.createElement(React.Fragment, null, children);
 }
