@@ -8,7 +8,7 @@ const apiClient = axios.create({
         "Content-Type": "application/json",
     },
     withCredentials: true, // Include cookies in requests
-    timeout: 10000,
+    timeout: 60000,
 });
 
 //every request will have access token in header if user is logged in
