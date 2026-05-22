@@ -32,12 +32,11 @@ export const logoutUser = async () => {
 //refresh token
 export const refreshToken = async () => {
 
-    const token = useAuth.getState().accessToken;
+    const token= useAuth.getState().accessToken;
     
-    const response = await apiClient.post<LoginResponseData>(
-        `auth/refresh`,
-        { refreshToken: token }
-    );
+    const response = await apiClient.post<LoginResponseData>(`auth/refresh`,{
+        refreshToken: token,
+    });
     return response.data;
 }
 
