@@ -16,10 +16,12 @@ import OAuthFailure from './pages/OAuthFailure.tsx';
 import Contact from './pages/Contact.tsx';
 import Analytics from './pages/Users/Analytics.tsx';
 import Goals from './pages/Users/Goals.tsx';
+import AuthBootstrap from './Auth/AuthBootStrap.ts';
 
 
 
 createRoot(document.getElementById('root')!).render(
+  <AuthBootstrap>
   <BrowserRouter>
     <Routes>
       {/* Page Routes */}
@@ -42,4 +44,5 @@ createRoot(document.getElementById('root')!).render(
       </Route>
     </Routes>
   </BrowserRouter>
+  </AuthBootstrap>
 )

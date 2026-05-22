@@ -3,7 +3,7 @@ import { refreshToken } from '@/services/AuthService';
 import axios from 'axios'
 
 const apiClient = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8083',
+    baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8083/api/v1',
     headers: {
         "Content-Type": "application/json",
     },
@@ -14,7 +14,8 @@ const apiClient = axios.create({
 //every request will have access token in header if user is logged in
 apiClient.interceptors.request.use((config) => {
 
-    const accessToken = useAuth.getState().accessToken;
+    const state = useAuth.getState();
+    const accessToken = state.accessToken;
     if(accessToken){
         config.headers.Authorization = `Bearer ${accessToken}`;
     }

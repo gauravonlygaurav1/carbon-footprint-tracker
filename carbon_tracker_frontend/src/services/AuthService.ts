@@ -2,6 +2,7 @@ import type RegisterData from "@/models/RegisterData";
 import apiClient from "@/config/ApiClient";
 import type LoginData from "@/models/LoginData";
 import type LoginResponseData from "@/models/LoginResponseData";
+import useAuth from "@/Auth/store";
 
 //register function
 export const registerUser = async (signupData: RegisterData) => {
@@ -30,7 +31,13 @@ export const logoutUser = async () => {
 
 //refresh token
 export const refreshToken = async () => {
-    const response = await apiClient.post<LoginResponseData>(`auth/refresh`);
+
+    const token = useAuth.getState().accessToken;
+    
+    const response = await apiClient.post<LoginResponseData>(
+        `auth/refresh`,
+        { refreshToken: token }
+    );
     return response.data;
 }
 
