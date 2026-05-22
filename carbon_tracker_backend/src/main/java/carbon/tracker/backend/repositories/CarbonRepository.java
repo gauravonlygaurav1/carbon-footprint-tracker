@@ -23,7 +23,7 @@ public interface CarbonRepository extends JpaRepository<Carbon, UUID> {
     Double getTotalEmission(UUID userId);
 
     @Query("""
-    SELECT COALESCE(SUM(c.emissionValue),0)
+    SELECT ROUND(COALESCE(SUM(c.emissionValue),0), 3)
     FROM Carbon c
     WHERE c.user.id = :userId
     AND c.activityType = :activityType
