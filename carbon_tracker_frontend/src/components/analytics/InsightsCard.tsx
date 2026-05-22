@@ -1,4 +1,3 @@
-
 import {
   ResponsiveContainer,
   BarChart,
@@ -12,12 +11,11 @@ import {
 function InsightsCard({ summary }: any) {
 
   const getInsight = () => {
-
     const max = Math.max(
-      summary?.drivingEmission,
-      summary?.foodEmission,
-      summary?.electricityEmission,
-      summary?.flightEmission
+      summary?.drivingEmission || 0,
+      summary?.foodEmission || 0,
+      summary?.electricityEmission || 0,
+      summary?.flightEmission || 0
     );
 
     if (max === summary?.drivingEmission) {
@@ -34,58 +32,69 @@ function InsightsCard({ summary }: any) {
 
     return "🌱 Food consumption contributes significantly.";
   };
-    //Bar Chart Data
-    const chartData = [
-    { name: "Driving", emission: summary?.drivingEmission || 0},
+
+  const chartData = [
+    { name: "Driving", emission: summary?.drivingEmission || 0 },
     { name: "Flight", emission: summary?.flightEmission || 0 },
     { name: "Electricity", emission: summary?.electricityEmission || 0 },
     { name: "Food", emission: summary?.foodEmission || 0 }
   ];
-  
 
   return (
+    <div className="bg-white rounded-2xl shadow-md p-3 sm:p-5 h-full w-full">
 
-    <div className="bg-white rounded-2xl shadow-md p-5 h-full">
-
-      <h2 className="text-xl font-semibold mb-4 text-green-700">
+      {/* Title */}
+      <h2 className="text-lg sm:text-xl font-semibold mb-3 text-green-700">
         Smart Insights
       </h2>
 
-      <div className="space-y-4 text-gray-600">
+      <div className="space-y-3 sm:space-y-4 text-gray-600 text-sm sm:text-base">
 
         <p>{getInsight()}</p>
 
         <p>
-          🌍 Reducing high emission activities
-          can improve your eco score.
+          🌍 Reducing high emission activities can improve your eco score.
         </p>
 
-        {/* Bar Chart */}
-        <div className="mt-6">
+        {/* Chart Section */}
+        <div className="mt-4 sm:mt-6">
 
           <h3 className="text-sm font-semibold text-gray-700 mb-3">
             Emission Breakdown
           </h3>
 
-          <div className="h-64">
+          {/* Responsive Chart Height */}
+          <div className="h-[220px] sm:h-[260px] md:h-64 w-full">
 
             <ResponsiveContainer width="100%" height="100%">
 
-              <BarChart data={chartData}>
+              <BarChart
+                data={chartData}
+                margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
+              >
 
-                <CartesianGrid strokeDasharray="3 3" />
+                <CartesianGrid strokeDasharray="3 3" opacity={0.4} />
 
-                <XAxis dataKey="name" />
+                {/* X Axis - mobile friendly */}
+                <XAxis
+                  dataKey="name"
+                  tick={{ fontSize: 12 }}
+                  angle={-30}
+                  textAnchor="end"
+                  interval={0}
+                  height={50}
+                />
 
-                <YAxis />
+                {/* Y Axis - compact */}
+                <YAxis tick={{ fontSize: 12 }} width={35} />
 
                 <Tooltip />
 
                 <Bar
                   dataKey="emission"
                   fill="#0f766e"
-                  radius={[10, 10, 0, 0]}
-                  barSize={40}
+                  radius={[8, 8, 0, 0]}
+                  barSize={window.innerWidth < 640 ? 20 : 40}
                 />
 
               </BarChart>
@@ -97,7 +106,6 @@ function InsightsCard({ summary }: any) {
         </div>
 
       </div>
-
     </div>
   );
 }

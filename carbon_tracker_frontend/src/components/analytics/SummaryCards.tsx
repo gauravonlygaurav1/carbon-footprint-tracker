@@ -80,7 +80,7 @@ function SummaryCards({ summary, goal }: any) {
           Track Your Goal
         </button>
         <button
-          className="cursor-pointer  mt-4 mx-4 px-4 py-2 rounded-full border border-green-200 
+          className="cursor-pointer  mt-4 mx-0 md:mx-4 px-4 py-2 rounded-full border border-green-200 
                text-sm hover:bg-green-100 transition"
         >
           View detailed progress
