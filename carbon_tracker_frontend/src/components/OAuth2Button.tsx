@@ -6,7 +6,7 @@ function OAuth2Button() {
     <div className="space-y-3">
 
             {/* Google */}
-            <NavLink to={`${import.meta.env.VITE_API_OAUTH2_URL || 'http://localhost:8083'
+            <NavLink to={`${import.meta.env.VITE_API_OAUTH2_URL || 'https://carbon-footprint-tracker-iyh1.onrender.com'
                 }/oauth2/authorization/google`}
                 className={'block'}>
             <Button type={'button'}
@@ -23,7 +23,7 @@ function OAuth2Button() {
             </NavLink>
  
             {/* GitHub */}
-            <NavLink to={`${import.meta.env.VITE_API_OAUTH2_URL || 'http://localhost:8083'
+            <NavLink to={`${import.meta.env.VITE_API_OAUTH2_URL || 'https://carbon-footprint-tracker-iyh1.onrender.com'
                 }/oauth2/authorization/github`} className={'block'}>
                 <Button
               variant="secondary"
