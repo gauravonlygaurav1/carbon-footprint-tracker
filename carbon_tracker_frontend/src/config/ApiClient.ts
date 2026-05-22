@@ -77,9 +77,15 @@ apiClient.interceptors.response.use(
             resolveQueue(newToken);
             original.headers.Authorization = `Bearer ${newToken}`;
             return apiClient(original);
-        }catch(error){
+        }catch(error: any){
+            
             resolveQueue("null");
-            useAuth.getState().logout();
+
+            // Only logout if refresh token is invalid or expired, not for other errors
+            if(error?.response?.status === 401 || error?.response?.status === 403){
+                useAuth.getState().logout();
+            }
+            
             return Promise.reject(error);
         }finally{
             isRefreshing = false;
