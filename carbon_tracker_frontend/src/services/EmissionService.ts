@@ -1,4 +1,3 @@
-import useAuth from "@/Auth/store";
 import apiClient from "@/config/ApiClient";
 import type { EmissionResponse } from "@/models/EmissionResponse";
 

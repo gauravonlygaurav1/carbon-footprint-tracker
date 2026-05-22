@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Car, Utensils, Zap, Plane, Leaf } from "lucide-react"
 import useAuth from "@/Auth/store";
 import { useEffect, useState } from "react";

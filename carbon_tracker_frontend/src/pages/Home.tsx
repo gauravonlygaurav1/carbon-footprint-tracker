@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {Button} from '@/components/ui/button'
 import bg_environment from "@/assets/bg_environment.jpg"
 import Nature_illustration from "@/assets/Nature_illustration.png"

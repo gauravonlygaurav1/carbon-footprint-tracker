@@ -1,5 +1,4 @@
 import useAuth from '@/Auth/store'
-import React from 'react'
 import { Navigate, Outlet } from 'react-router'
 
 function Layout() {
