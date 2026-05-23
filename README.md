@@ -66,11 +66,11 @@ Built using **React, TypeScript, Spring Boot, Spring Security, JWT, OAuth2, Dock
 ### Goal Tracking
 ![Goal Page](screenshots/Goals.PNG)
 
-### Profile View
+### Profile
 ![Profile Page](screenshots/Profile.PNG)
 
 ### Live Demo
-![Carbon Footprint Tracker Demo](screenshots/Carbon-Tracker-Demo.GIF)
+![Carbon Footprint Tracker Demo](screenshots/Demo.GIF)
 
 ## 🧠 System Architecture
 
@@ -126,22 +126,24 @@ API]-> [JWT Authentication Filter]-> [Business Logic]-> [MySQL Database]
 
 ### 1️⃣ Clone Repository
 
-git clone https://github.com/gauravonlygaurav1/carbon-footprint-tracker
+git clone https://github.com/gauravonlygaurav1/carbon-footprint-tracker  
 cd carbon-footprint-tracker
 
 ### 2️⃣ Backend Setup
 
+```bash
 cd carbon_tracker_backend
-mvn spring-boot:run
-
+mvn spring-boot:run  
+```
 Configure DB in application-dev.yml
 
 ### 3️⃣ Frontend Setup
 
+```bash
 cd carbon_tracker_frontend
 npm install
-npm run dev
-
+npm run dev  
+```
 Frontend runs on: http://localhost:5173
 
 ## 🌐 Live Demo
