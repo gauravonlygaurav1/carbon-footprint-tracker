@@ -70,7 +70,7 @@ Built using **React, TypeScript, Spring Boot, Spring Security, JWT, OAuth2, Dock
 ![Profile Page](screenshots/Profile.PNG)
 
 ### Live Demo
-![Carbon Footprint Tracker Demo](screenshots/Demo.GIF)
+![Demo](screenshots/demo.gif)
 
 ## 🧠 System Architecture
 
