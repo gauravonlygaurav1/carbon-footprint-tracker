@@ -1,6 +1,4 @@
 
-![Carbon Footprint Tracker](https://carbon-footprint-tacker.netlify.app/api?type=waving&color=0:2ecc71,100:27ae60&height=200&section=header&text=Carbon%20Footprint%20Tracker&fontSize=30&fontColor=ffffff)
-
 # 🌱 Carbon Footprint Tracker
 
 ![Java](https://img.shields.io/badge/Java-17%2B-orange)
@@ -52,7 +50,7 @@ Built using **React, TypeScript, Spring Boot, Spring Security, JWT, OAuth2, Dock
 ### Home Page
 ![Home Page](screenshots/Home.PNG)
 
-### Signup Page
+### Signup
 ![Signup Page](screenshots/SignUp.PNG)
 
 ### Dashboard
@@ -66,15 +64,13 @@ Built using **React, TypeScript, Spring Boot, Spring Security, JWT, OAuth2, Dock
 ![Analytics2 Page](screenshots/Analytics2.PNG)
 
 ### Goal Tracking
-![Goal Page](screenshots/Goal.PNG)
+![Goal Page](screenshots/Goals.PNG)
 
 ### Profile View
 ![Profile Page](screenshots/Profile.PNG)
 
 ### Live Demo
 ![Carbon Footprint Tracker Demo](screenshots/Carbon-Tracker-Demo.GIF)
-
-----
 
 ## 🧠 System Architecture
 
@@ -88,8 +84,6 @@ API]-> [JWT Authentication Filter]-> [Business Logic]-> [MySQL Database]
 - Once authenticated, the request moves to the Carbon Calculation Engine, where CO₂ emissions are calculated based on activity type (driving, electricity, food, etc.)
 - The calculated emission data is then stored in the MySQL database for history, analytics, and dashboard visualization
 - The backend sends a structured response back to the frontend, which updates the UI in real time
-
-----
 
 ## 🛠️ Tech Stack
 
@@ -110,8 +104,6 @@ API]-> [JWT Authentication Filter]-> [Business Logic]-> [MySQL Database]
 - JPA / Hibernate  
 - MySQL 
 
-----
-
 ## 📂 Project Structure
 
 ### Backend
@@ -129,8 +121,6 @@ API]-> [JWT Authentication Filter]-> [Business Logic]-> [MySQL Database]
 - services → API calls (Axios)
 - store -> Zustand Store
 - charts → Analytics components
-
-----
 
 ## 🚀 Setup & Run
 
@@ -154,15 +144,11 @@ npm run dev
 
 Frontend runs on: http://localhost:5173
 
-----
-
 ## 🌐 Live Demo
 
 **Frontend:** https://carbon-footprint-tacker.netlify.app/
 
 **Backend:** https://carbon-footprint-tracker-iyh1.onrender.com
-
-----
 
 ## 🎯 Future Improvements
 
@@ -171,8 +157,6 @@ Frontend runs on: http://localhost:5173
 - Mobile app (React Native)
 - Cloud deployment (AWS)
 - Social sharing of progress
-
-----
 
 ## 👨‍💻 Author
 
