@@ -1,6 +1,4 @@
 
-# 🌱 Carbon Footprint Tracker
-
 ![Java](https://img.shields.io/badge/Java-21%2B-orange)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-green)
 ![React](https://img.shields.io/badge/React-blue)
